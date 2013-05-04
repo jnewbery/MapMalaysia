@@ -1,4 +1,5 @@
 var map = L.map('map').setView([3.8, 102], 7);
+
 var cloudmade = L.tileLayer('http://{s}.tile.cloudmade.com/{key}/{styleId}/256/{z}/{x}/{y}.png', {
 	attribution: 'Map data &copy; 2011 OpenStreetMap contributors, Imagery &copy; 2011 CloudMade',
 	key: 'BC9A493B41014CAABB98F0471D759707',
@@ -11,12 +12,15 @@ info.onAdd = function (map) {
 	this.update();
 	return this._div;
 };
+
 info.update = function (props) {
 	this._div.innerHTML = '<h4>Malaysian states</h4>' +  (props ?
 		'<b>' + props.name + '</b><br />' + props.density + ' people / km<sup>2</sup>'
 		: 'Hover over a state');
 };
+
 info.addTo(map);
+
 // get color depending on population density value
 function getColor(d) {
 	return d > 1000 ? '#800026' :
@@ -28,6 +32,7 @@ function getColor(d) {
 	       d > 10   ? '#FED976' :
 	                  '#FFEDA0';
 }
+
 function style(feature) {
 	return {
 		weight: 2,
@@ -38,6 +43,7 @@ function style(feature) {
 		fillColor: getColor(feature.properties.density)
 	};
 }
+
 function highlightFeature(e) {
 	var layer = e.target;
 	layer.setStyle({
@@ -51,14 +57,17 @@ function highlightFeature(e) {
 	}
 	info.update(layer.feature.properties);
 }
+
 var geojson;
 function resetHighlight(e) {
 	geojson.resetStyle(e.target);
 	info.update();
 }
+
 function zoomToFeature(e) {
 	map.fitBounds(e.target.getBounds());
 }
+
 function onEachFeature(feature, layer) {
 	layer.on({
 		mouseover: highlightFeature,
@@ -66,6 +75,7 @@ function onEachFeature(feature, layer) {
 		click: zoomToFeature
 	});
 }
+
 geojson = L.geoJson(statesData, {
 	style: style,
 	onEachFeature: onEachFeature
@@ -87,4 +97,5 @@ legend.onAdd = function (map) {
 	div.innerHTML = labels.join('<br>');
 	return div;
 };
+
 legend.addTo(map);
