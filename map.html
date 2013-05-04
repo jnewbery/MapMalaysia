@@ -12,11 +12,29 @@
     <link rel="stylesheet" href="static/css/bootstrap.css">
     <link rel="stylesheet" href="static/css/bootstrap-responsive.css">
     <link rel="stylesheet" href="static/css/prettify.css">
+
+    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
 </head>
 <body>
+	<div class="container-fluid">
+	<div class="controls">
+	<div class="btn-group" id="zoom">
 	<button type="button" class="btn btn-info" id="WM">West Malaysia</button>
 	<button type="button" class="btn btn-info" id="EM">East Malaysia</button>
-	<div id="map"></div>
+    </div><br/>
+    <div class="btn-group" data-toggle="buttons-radio">
+    <button type="button" value="0" class="btn btn-primary">Population</button>
+    <button type="button" value="1" class="btn btn-primary active">Population Density</button>
+    <button type="button" value="2" class="btn btn-primary">Malay %</button>
+    <button type="button" value="3" class="btn btn-primary">Chinese %</button>
+    <button type="button" value="4" class="btn btn-primary">Indian %</button>
+    </div>
+    </div>
+
+    <div id="map"></div>
+
+    </div>
 
 	<script src="/static/js/leaflet.js"></script>
 	<script src="static/json/states.json"></script>

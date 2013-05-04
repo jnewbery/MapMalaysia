@@ -1,6 +1,8 @@
 		#map {
 			width: 1000px;
 			height: 600px;
+			border-style:solid;
+			border-width:2px;
 		}
 
 		.info {
@@ -27,4 +29,10 @@
 			float: left;
 			margin-right: 8px;
 			opacity: 0.7;
+		}
+		div.controls {
+			margin-top:10px;
+		}
+		div.controls button{
+			margin-bottom:10px;
 		}

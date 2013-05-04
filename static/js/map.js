@@ -114,3 +114,5 @@ document.getElementById("EM").onclick = function ()
 {
     map.setView(westMalaysiaLatLon, westMalaysiaZoom);
 }
+
+$('.nav-tabs').button()
