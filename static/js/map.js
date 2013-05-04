@@ -1,4 +1,9 @@
-var map = L.map('map').setView([3.8, 102], 7);
+var eastMalaysiaLatLon = [3.8, 102],
+    eastMalaysiaZoom = 7,
+    westMalaysiaLatLon = [4, 114.4],
+    westMalaysiaZoom = 7;
+
+var map = L.map('map').setView(eastMalaysiaLatLon, eastMalaysiaZoom);
 
 var cloudmade = L.tileLayer('http://{s}.tile.cloudmade.com/{key}/{styleId}/256/{z}/{x}/{y}.png', {
 	attribution: 'Map data &copy; 2011 OpenStreetMap contributors, Imagery &copy; 2011 CloudMade',
@@ -99,3 +104,13 @@ legend.onAdd = function (map) {
 };
 
 legend.addTo(map);
+
+document.getElementById("WM").onclick = function () 
+{
+    map.setView(eastMalaysiaLatLon, eastMalaysiaZoom);
+}
+
+document.getElementById("EM").onclick = function () 
+{
+    map.setView(westMalaysiaLatLon, westMalaysiaZoom);
+}
