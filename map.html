@@ -18,22 +18,27 @@
 </head>
 <body>
 	<div class="container-fluid">
-	<div class="controls">
-	<div class="btn-group" id="zoom">
-	<button type="button" class="btn btn-info" id="WM">West Malaysia</button>
-	<button type="button" class="btn btn-info" id="EM">East Malaysia</button>
-    </div><br/>
-    <div class="btn-group" data-toggle="buttons-radio">
-    <button type="button" value="0" class="btn btn-primary">Population</button>
-    <button type="button" value="1" class="btn btn-primary active">Population Density</button>
-    <button type="button" value="2" class="btn btn-primary">Malay %</button>
-    <button type="button" value="3" class="btn btn-primary">Chinese %</button>
-    <button type="button" value="4" class="btn btn-primary">Indian %</button>
-    </div>
-    </div>
+	    <div class="controls row">
+	        <div class="btn-group span12" id="zoom">
+	           <button type="button" class="btn btn-info" id="WM">West Malaysia</button>
+               <button type="button" class="btn btn-info" id="EM">East Malaysia</button>
+            </div>
+            <br/>
+            <div class="btn-group span12" data-toggle="buttons-radio">
+                <button type="button" value="0" class="btn btn-primary">Population</button>
+                <button type="button" value="1" class="btn btn-primary active">Population Density</button>
+                <button type="button" value="2" class="btn btn-primary">Malay %</button>
+                <button type="button" value="3" class="btn btn-primary">Chinese %</button>
+                <button type="button" value="4" class="btn btn-primary">Indian %</button>
+                <button type="button" value="5" class="btn btn-primary">% vote for BN</button>
+                <button type="button" value="6" class="btn btn-primary">% vote for PKR</button>
+            </div>
+        </div>
 
-    <div id="map"></div>
-
+        <div class="row">
+            <div id="map" class="span8"></div>
+            <div id="details" class="span4"><h4>Details panel</h4></div>
+        </div>
     </div>
 
 	<script src="/static/js/leaflet.js"></script>
