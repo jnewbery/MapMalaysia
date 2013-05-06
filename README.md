@@ -10,5 +10,6 @@ I couldn't find a good source of geographic data for Malaysia, so the states are
 Files
 -----
 
-- geo.js contains all the geoJSON, (mostly) broken down into frontiers and collected into polygons. Once that work is complete, the json/<state>.json files can be removedg- Leaflet js and css files included.
+- geo.js contains all the geoJSON, (mostly) broken down into frontiers and collected into polygons. Once that work is complete, the json/state.json files can be removed
+- Leaflet js and css files included.
 - Bootstrap js and css included
