@@ -25,11 +25,7 @@
             </div>
             <br/>
             <div class="btn-group span12" data-toggle="buttons-radio">
-                <button type="button" value="0" class="btn btn-primary">Population</button>
                 <button type="button" value="1" class="btn btn-primary active">Population Density</button>
-                <button type="button" value="2" class="btn btn-primary">Malay %</button>
-                <button type="button" value="3" class="btn btn-primary">Chinese %</button>
-                <button type="button" value="4" class="btn btn-primary">Indian %</button>
                 <button type="button" value="5" class="btn btn-primary">% vote for BN</button>
                 <button type="button" value="6" class="btn btn-primary">% vote for PKR</button>
             </div>
@@ -37,9 +33,11 @@
 
         <div class="row">
             <div id="map" class="span8"></div>
-            <div id="details" class="span4"><h4>Details panel</h4></div>
+            <div id="details" class="span4"><h4>Details panel</h4><p style="text-align: center;">Alternative stats buttons aren't yet functional.<br/><br/>State information will appear in this panel when clicked on.</p></div>
         </div>
     </div>
+
+    <p id="attribution" style="text-align: left; bottom: 20px; position: absolute; right: 30px; font-family: Helvetica Neue, Verdana, sans-serif; font-size: 14px;">Created by <a href="http://twitter.com/jonnynewbs">@jonnynewbs</a></p>
 
     <script src="public/js/leaflet.js"></script>
     <script src="public/js/geo.js"></script>
