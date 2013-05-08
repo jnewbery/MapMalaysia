@@ -1,6 +1,6 @@
-background pattern egg_shell.png provided free by www.subtlepatterns.com.
-
 ===
+
+leaflet.js
 
 Copyright (c) 2010-2013, Vladimir Agafonkin
 Copyright (c) 2010-2011, CloudMade
@@ -28,6 +28,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 ===
 
+d3.js
+
 Copyright (c) 2013, Michael Bostock
 All rights reserved.
 
@@ -54,3 +56,12 @@ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY
 OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+===
+
+ egg_shell.png
+
+ This pattern is downloaded from www.subtlepatterns.com 
+ If you need more, that's where to get'em.
+
+===
