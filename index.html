@@ -1,48 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Malaysia Population Density</title>
+  <title>Malaysia Population Density</title>
 
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="public/css/leaflet.css" />
-    <link rel="stylesheet" href="public/css/my.css" />
-    <link rel="stylesheet" href="public/css/bootstrap.css">
-    <link rel="stylesheet" href="public/css/bootstrap-responsive.css">
-    <link rel="stylesheet" href="public/css/prettify.css">
+  <link rel="stylesheet" href="public/css/leaflet.css" />
+  <link rel="stylesheet" href="public/css/my.css" />
+  <link rel="stylesheet" href="public/css/bootstrap.min.css">
+  <link rel="stylesheet" href="public/css/bootstrap-responsive.min.css">
+  <link rel="stylesheet" href="public/css/prettify.css">
+  <link rel="stylesheet" href="public/css/select2.css">
 
-    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
-    <script src="public/js/bootstrap.min.js"></script>
+  <script src="public/js/jquery-1.9.1.min.js"></script>
+  <script src="public/js/bootstrap.min.js"></script>
+  <script src="public/js/d3.v3.min.js"></script>
+  <script src="public/js/select2.min.js"></script>
 </head>
 <body>
-    <a href="https://github.com/jonnynewbs/MapMalaysia"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
-    <div class="container-fluid">
-        <div class="controls row">
-            <div class="btn-group span12" id="zoom">
-               <button type="button" class="btn btn-info" id="WM">West Malaysia</button>
-               <button type="button" class="btn btn-info" id="EM">East Malaysia</button>
-            </div>
-            <br/>
-            <div class="btn-group span12" data-toggle="buttons-radio">
-                <button type="button" value="1" class="btn btn-primary active">Population Density</button>
-                <button type="button" value="2" class="btn btn-primary">Urban population %</button>
-                <button type="button" value="3" class="btn btn-primary">Income per capita</button>
-                <button type="button" value="4" class="btn btn-primary">% vote for BN</button>
-                <button type="button" value="5" class="btn btn-primary">% vote for PKR</button>
-            </div>
-        </div>
-
-        <div class="row">
-            <div id="map" class="span8"></div>
-            <div id="details" class="span4"><h4>Details panel</h4><p style="text-align: center;">Alternative stats buttons aren't yet functional.<br/><br/>State information will appear in this panel when clicked on.</p></div>
-        </div>
+  <a href="https://github.com/jonnynewbs/MapMalaysia"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  <div class="container-fluid">
+    <div class="controls row">
+      <div class="btn-group span12" id="zoom">
+        <button type="button" class="btn btn-info" id="WM">West Malaysia</button>
+        <button type="button" class="btn btn-info" id="EM">East Malaysia</button>
+      </div>
+      <br/>
+      <div class="btn-group span12" id="statButtons" data-toggle="buttons-radio">
+      </div>
     </div>
 
-    <p id="attribution" style="text-align: left; bottom: 20px; position: absolute; right: 30px; font-family: Helvetica Neue, Verdana, sans-serif; font-size: 14px;">Created by <a href="http://twitter.com/jonnynewbs">@jonnynewbs</a></p>
+    <div class="row">
+      <div id="map" class="span8"></div>
+      <div id="details" class="span4"><div id="state-detail">Loading details...</div></div></div>
+    </div>
+  </div>
 
-    <script src="public/js/leaflet.js"></script>
-    <script src="public/js/geo.js"></script>
-    <script src="public/js/map.js"></script>
+  <p id="attribution" style="text-align: left; bottom: 20px; position: absolute; right: 30px; font-family: Helvetica Neue, Verdana, sans-serif; font-size: 14px;">Created by <a href="http://twitter.com/jonnynewbs">@jonnynewbs</a></p>
+
+  <script src="public/js/leaflet.js"></script>
+  <script src="public/js/geo.js"></script>
+  <script src="public/js/map.js"></script>
 </body>
 </html>
