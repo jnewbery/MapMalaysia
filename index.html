@@ -1,46 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Malaysia Population Density</title>
+  <title>Malaysia Population Density</title>
 
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="public/css/leaflet.css" />
-    <link rel="stylesheet" href="public/css/my.css" />
-    <link rel="stylesheet" href="public/css/bootstrap.min.css">
-    <link rel="stylesheet" href="public/css/bootstrap-responsive.min.css">
-    <link rel="stylesheet" href="public/css/prettify.css">
+  <link rel="stylesheet" href="public/css/leaflet.css" />
+  <link rel="stylesheet" href="public/css/my.css" />
+  <link rel="stylesheet" href="public/css/bootstrap.min.css">
+  <link rel="stylesheet" href="public/css/bootstrap-responsive.min.css">
+  <link rel="stylesheet" href="public/css/prettify.css">
+  <link rel="stylesheet" href="public/css/select2.css">
 
-    <script src="public/js/jquery-1.9.1.min.js"></script>
-    <script src="public/js/bootstrap.min.js"></script>
-    <script src="public/js/d3.v3.min.js"></script>
+  <script src="public/js/jquery-1.9.1.min.js"></script>
+  <script src="public/js/bootstrap.min.js"></script>
+  <script src="public/js/d3.v3.min.js"></script>
+  <script src="public/js/select2.min.js"></script>
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="controls row">
-            <div class="btn-group span12" id="zoom">
-               <button type="button" class="btn btn-info" id="WM">West Malaysia</button>
-               <button type="button" class="btn btn-info" id="EM">East Malaysia</button>
-            </div>
-            <br/>
-            <div class="btn-group span12" data-toggle="buttons-radio">
-                <button type="button" value="0" class="btn btn-primary active">Population density</button>
-                <button type="button" value="1" class="btn btn-primary">Urban population %</button>
-                <button type="button" value="2" class="btn btn-primary">Income per Capita</button>
-                <button type="button" value="3" class="btn btn-primary">% vote for BN</button>
-                <button type="button" value="4" class="btn btn-primary">% vote for PR</button>
-            </div>
-        </div>
-
-        <div class="row">
-            <div id="map" class="span8"></div>
-            <div id="details" class="span4"><h4>Details panel</h4></div>
-        </div>
+  <div class="container-fluid">
+    <div class="controls row">
+      <div class="btn-group span12" id="zoom">
+        <button type="button" class="btn btn-info" id="WM">West Malaysia</button>
+        <button type="button" class="btn btn-info" id="EM">East Malaysia</button>
+      </div>
+      <br/>
+      <div class="btn-group span12" id="statButtons" data-toggle="buttons-radio">
+      </div>
     </div>
 
-    <script src="public/js/leaflet.js"></script>
-    <script src="public/js/geo.js"></script>
-    <script src="public/js/map.js"></script>
+    <div class="row">
+      <div id="map" class="span8"></div>
+      <div id="details" class="span4"><div id="state-detail">Loading details...</div></div></div>
+    </div>
+  </div>
+
+  <script src="public/js/leaflet.js"></script>
+  <script src="public/js/geo.js"></script>
+  <script src="public/js/map.js"></script>
 </body>
 </html>
