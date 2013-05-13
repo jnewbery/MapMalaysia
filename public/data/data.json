@@ -46,7 +46,7 @@
     },
     "values":[1933,2161,1297,1100,762,641,1169,1020,960,1322,836,752,833,974,1714,783]
   },
-  { "name":"% Vote for BN",
+  { "name":"Vote for BN",
     "id":"percentage_vote_for_BN",
     "unit":"%",
     "map":true,
@@ -64,7 +64,7 @@
     },
     "values":[34,66,69,54,50,42,53,50,54,31,44,55,54,58,38,51]
   },
-  {"name":"% Vote for PAS",
+  {"name":"Vote for PAS",
     "id":"percentage_vote_for_PAS",
     "unit":"%",
     "map":true,
@@ -82,7 +82,7 @@
     },
     "values":[3,2,31,9,24,44,3,12,17,6,10,44,2,2,15,42]
   },
-  {"name":"% Vote for PKR",
+  {"name":"Vote for PKR",
     "id":"percentage_vote_for_PKR",
     "unit":"%",
     "map":true,
@@ -100,7 +100,7 @@
     },
     "values":[26,31,0,20,24,9,24,15,17,18,21,0,25,13,29,6]
   },
-  {"name":"% Vote for DAP",
+  {"name":"Vote for DAP",
     "id":"percentage_vote_for_DAP",
     "unit":"%",
     "map":true,

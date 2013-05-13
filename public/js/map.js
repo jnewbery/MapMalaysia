@@ -142,8 +142,8 @@ selectState = function(state_ix, update_dropdown) {
   props = statesData.features[state_ix].properties;
   h = "<table class='table table-striped' style='font-size:smaller'><tbody>";
 
-  for (var stat in props) {
-    h += ("<tr><td>" + stat + "</td><td>" + props[stat] + "</td></tr>");
+  for (var i = 0; i < stats.length; i += 1) {
+    h += ("<tr><td>" + stats[i].name + " (" + stats[i].unit + ")</td><td>" + props[stats[i].name] + "</td></tr>");
   }
 
   h += "</tbody></table>"
