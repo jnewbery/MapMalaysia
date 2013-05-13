@@ -3,7 +3,7 @@ var eMyLatLon = [3.8, 102],
     eMyZoom = 7,
     wMyZoom = 7;
 
-var map = L.map('map').setView(eMyLatLon, eMyZoom);
+var map = L.map('map').setView(config.starting_lat_lon, config.starting_zoom);
 var stats;
 
 $.ajax({
@@ -61,6 +61,9 @@ $.ajax({
         alert("JSON Error: " + estatus + " , " + ethrown);
     }
 });
+
+//Get title
+$('title').html(config.title);
 
 // add cloudmade
 var cloudmade = L.tileLayer('http://{s}.tile.cloudmade.com/{key}/{styleId}/256/{z}/{x}/{y}.png', {
