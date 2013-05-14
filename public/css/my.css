@@ -3,19 +3,18 @@ body {
 }
 
 #map {
-  width: 1000px;
   height: 600px;
   border-style:solid;
   border-width:2px;
 }
 
 #details {
-  width: 300px;
   height: 600px;
   border-style: solid;
   border-width: 2px;
   background-color: white;
 }
+
 #details h4{
   text-align: center;
 }
@@ -46,9 +45,6 @@ body {
   opacity: 0.7;
 }
 
-div.controls {
+div.row-fluid {
   margin-top:10px;
-}
-div.controls button{
-  margin-bottom:10px;
 }

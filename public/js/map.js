@@ -165,7 +165,7 @@ $.ajax({
 	    };
         
 	    // Add the combobox.
-	    selector = $("<select id='state-combobox' style='width:300px'></select>");
+	    selector = $("<select id='state-combobox' style='width:100%'></select>");
 	    selector.append("<option value>Select state...</option>");
 	    for (var ix = 0; ix < statesData.features.length; ix ++) {
 	      state = statesData.features[ix];
