@@ -112,13 +112,13 @@ function updateLegend() {
 		grades = [],
 	    labels = [],
 	    from,to;
-	legend.html("");
 	for (colour in current_stat.colours) {grades.push(parseInt(colour))};
 	for (var i = 0; i < grades.length; i++) {	
 		from = grades[i];
 		to = grades[i+1];
 		labels.push('<i style="background:' + getColour(from + 1) + '"></i> ' + from + (to ? '&ndash;' + to : '+'));
 	}
+	legend.html("<p>" + current_stat.unit + "</p>");
 	legend.append(labels.join('<br>'));
 }
 
