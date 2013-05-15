@@ -1,8 +1,3 @@
-var eMyLatLon = [3.8, 102],
-    wMyLatLon = [4, 114.4],
-    eMyZoom = 7,
-    wMyZoom = 7;
-
 var map,
     stats,
     current_stat,
@@ -14,7 +9,7 @@ var map,
 $('title').html(config.title);
 
 // Add the map.
-map = L.map('map').setView(config.starting_lat_lon, config.starting_zoom);
+map = L.map('map').setView(config.home.lat_lon, config.home.zoom);
 
 // Add cloudmade.
 var cloudmade = L.tileLayer('http://{s}.tile.cloudmade.com/{key}/{styleId}/256/{z}/{x}/{y}.png', {
@@ -22,6 +17,15 @@ var cloudmade = L.tileLayer('http://{s}.tile.cloudmade.com/{key}/{styleId}/256/{
     key: 'BC9A493B41014CAABB98F0471D759707',
     styleId: 22677
 }).addTo(map);
+
+// Add zoom buttons.
+$("#zoom_buttons").html("");
+for (var jx = 0; jx < config.zooms.length; jx ++) {
+  $("#zoom_buttons").append("<button type='button' class='btn btn-info' id='" + config.zooms[jx].id + "'>" + config.zooms[jx].name + "</button>");
+
+  // Add a handler for the button.
+  $('#' + config.zooms[jx].id).click(function (lat_lon,zoom) {map.setView(lat_lon, zoom)}.bind(undefined,config.zooms[jx].lat_lon,config.zooms[jx].zoom));
+}
 
 // Change the current stat.
 function selectStat(val, e) {
@@ -122,16 +126,6 @@ function updateLegend() {
   legend.append(labels.join('<br>'));
 }
 
-document.getElementById("WM").onclick = function () 
-{
-  map.setView(eMyLatLon, eMyZoom);
-}
-
-document.getElementById("EM").onclick = function () 
-{
-  map.setView(wMyLatLon, wMyZoom);
-}
-
 // Update the details panel.
 selectState = function(state_ix, update_dropdown) {
 
@@ -153,7 +147,7 @@ selectState = function(state_ix, update_dropdown) {
 // Get data.json and populate the map with data.
 $.ajax({
   dataType: 'json',
-  url: "./public/data/data.json", 
+  url: "./public/data/stats.json", 
   timeout: 20000,
   success: function(data) {
     stats = data;
@@ -184,10 +178,10 @@ $.ajax({
                         .on("change", onTableChange);
 
     // Add stat buttons.
-    $("#statButtons").html("");
+    $("#stat_buttons").html("");
     for (var jx = 0; jx < data.length; jx ++) {
       if (data[jx].map) {
-        $("#statButtons").append("<button type='button' value='" + jx + "'class='btn btn-primary' id='" + data[jx].id + "''>" + data[jx].name + "</button>");
+        $("#stat_buttons").append("<button type='button' value='" + jx + "'class='btn btn-primary' id='" + data[jx].id + "''>" + data[jx].name + "</button>");
 
         // Add a handler for the button.
         $('#' + data[jx].id).click(function (e) {selectStat(this,e)});
