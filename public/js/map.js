@@ -8,6 +8,15 @@ var map,
 // Set page title.
 $('title').html(config.title);
 
+// Add zoom buttons.
+$("#zoom_buttons").html("");
+for (var jx = 0; jx < config.zooms.length; jx ++) {
+  $("#zoom_buttons").append("<button type='button' class='btn btn-info' id='" + config.zooms[jx].id + "'>" + config.zooms[jx].name + "</button>");
+
+  // Add a handler for the button.
+  $('#' + config.zooms[jx].id).click(function (lat_lon,zoom) {map.setView(lat_lon, zoom)}.bind(undefined,config.zooms[jx].lat_lon,config.zooms[jx].zoom));
+}
+
 // Add the map.
 map = L.map('map').setView(config.home.lat_lon, config.home.zoom);
 
@@ -18,14 +27,26 @@ var cloudmade = L.tileLayer('http://{s}.tile.cloudmade.com/{key}/{styleId}/256/{
     styleId: 22677
 }).addTo(map);
 
-// Add zoom buttons.
-$("#zoom_buttons").html("");
-for (var jx = 0; jx < config.zooms.length; jx ++) {
-  $("#zoom_buttons").append("<button type='button' class='btn btn-info' id='" + config.zooms[jx].id + "'>" + config.zooms[jx].name + "</button>");
+// Add choropleth features.
+geojson = L.geoJson(statesData, {
+  style: style,
+  onEachFeature: onEachFeature
+}).addTo(map);
 
-  // Add a handler for the button.
-  $('#' + config.zooms[jx].id).click(function (lat_lon,zoom) {map.setView(lat_lon, zoom)}.bind(undefined,config.zooms[jx].lat_lon,config.zooms[jx].zoom));
-}
+// Add legend panel.
+legend = L.control({position: 'bottomright'});
+legend.onAdd = function (map) {
+  return L.DomUtil.create('div', 'info legend');
+};
+legend.addTo(map);
+
+// Add info panel.
+info = L.control();
+info.onAdd = function (map) {
+  this._div = L.DomUtil.create('div', 'info');
+  return this._div;
+};
+info.addTo(map);
 
 // Change the current stat.
 function selectStat(val, e) {
@@ -45,23 +66,23 @@ function selectStat(val, e) {
 
 // Get colour depending on stat value.
 function getColour(d) {
-  if (!current_stat) {return '#000000'}
-  var ret;
-  for (colour in current_stat.colours) {
-    if (d > colour) {ret = current_stat.colours[colour]};
+  colours = current_stat ? current_stat.colours : {"0":"#FFFFFF"};
+  for (colour in colours) {
+    if (d >= colour) {ret = colours[colour]};
   }
   return ret;
 }
 
 // Style a map feature.
 function style(feature) {
+  fill_col = current_stat ? feature.properties[current_stat.name] : 0;
   return {
     weight: 2,
     opacity: 1,
     color: 'white',
     dashArray: '3',
     fillOpacity: 0.7,
-    fillColor: getColour(feature.properties[(current_stat ? current_stat.name : '')])
+    fillColor: getColour(fill_col)
   };
 }
 
@@ -127,7 +148,7 @@ function updateLegend() {
 }
 
 // Update the details panel.
-selectState = function(state_ix, update_dropdown) {
+function selectState(state_ix, update_dropdown) {
 
   // Update combobox.
   $("#state-combobox").select2("val", state_ix);
@@ -144,6 +165,12 @@ selectState = function(state_ix, update_dropdown) {
   $("#state-info").html(h);
 };
 
+// Make the state selector.
+function onTableChange(e) {
+  // table index stored in e.val
+  selectState(e.val);
+};
+
 // Get data.json and populate the map with data.
 $.ajax({
   dataType: 'json',
@@ -151,12 +178,6 @@ $.ajax({
   timeout: 20000,
   success: function(data) {
     stats = data;
-
-    // Make the state selector.
-    onTableChange = function(evt) {
-      // table index stored in evt.val
-      selectState(evt.val);
-    };
 
     // Add the combobox.
     selector = $("<select id='state-combobox' style='width:100%'></select>");
@@ -174,8 +195,7 @@ $.ajax({
     $("#state-detail").html("")
                       .append(selector)
                       .append("<div id='state-info'></div><div id='state-searchbox'></div>");
-    $("#state-combobox").select2()
-                        .on("change", onTableChange);
+    $("#state-combobox").select2().on("change", onTableChange);
 
     // Add stat buttons.
     $("#stat_buttons").html("");
@@ -187,27 +207,6 @@ $.ajax({
         $('#' + data[jx].id).click(function (e) {selectStat(this,e)});
       }
     }
-
-    // Add choropleth features.
-    geojson = L.geoJson(statesData, {
-      style: style,
-      onEachFeature: onEachFeature
-    }).addTo(map);
-
-    // Add legend panel.
-    legend = L.control({position: 'bottomright'});
-    legend.onAdd = function (map) {
-      return L.DomUtil.create('div', 'info legend');
-    };
-    legend.addTo(map);
-
-    // Add info panel.
-    info = L.control();
-    info.onAdd = function (map) {
-      this._div = L.DomUtil.create('div', 'info');
-      return this._div;
-    };
-    info.addTo(map);
 
     // Activate the first active stat.
     for (var jx = 0; jx < data.length; jx ++) {
