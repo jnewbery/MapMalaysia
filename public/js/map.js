@@ -66,7 +66,7 @@ function selectStat(val, e) {
   }
 
   // Update the map layers, info and legend.
-  geojson.eachLayer(function(t,e){geojson.resetStyle(t)});
+  geojson.eachLayer(function(t){geojson.resetStyle(t)});
   updateInfo();
   updateLegend();
 }
@@ -115,10 +115,14 @@ function resetHighlight(e) {
 }
 
 // Zoom to a map feature.
-function zoomToFeature(e) {
-  map.fitBounds(e.target.getBounds());
-  id = e.target.feature.id;
-  selectState(parseInt(id) - 1,true);
+function zoomToFeature(target) {
+  map.fitBounds(target.getBounds());
+}
+
+// Click on a map feature.
+function clickFeature(e) {
+  zoomToFeature(e.target);
+  selectState(parseInt(e.target.feature.id) - 1,true);
 }
 
 // Attach listners to each feature.
@@ -126,9 +130,8 @@ function onEachFeature(feature, layer) {
   layer.on({
     mouseover: highlightFeature,
     mouseout: resetHighlight,
-    click: zoomToFeature
+    click: clickFeature
   });
-  // TODO: This would be a good place to add the layer id/class
 }
 
 // Update the info panel.
@@ -170,10 +173,17 @@ function selectState(state_ix, update_dropdown) {
   $("#state-info").html(h);
 };
 
-// Make the state selector.
+// A state is selected in the drop menu.
 function onTableChange(e) {
   // table index stored in e.val
   selectState(e.val);
+
+  // zoom to the state
+  geojson.eachLayer(function(t) {
+    if ((parseInt(e.val) + 1) == parseInt(t.feature.id)) {
+      map.fitBounds(t.getBounds());
+    }
+  })
 };
 
 // Get data.json and populate the map with data.
