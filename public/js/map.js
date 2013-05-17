@@ -3,7 +3,8 @@ var map,
     current_stat,
     geojson,
     legend,
-    info;
+    info,
+    zoom_buttons;
 
 // Set page title.
 $('title').html(config.title);
@@ -27,27 +28,25 @@ geojson = L.geoJson(statesData, {
 // Add legend panel.
 legend = L.control({position: 'bottomright'});
 legend.onAdd = function (map) {
-  return L.DomUtil.create('div', 'info legend');
+  return L.DomUtil.create('div', 'panel legend');
 };
 legend.addTo(map);
 
 // Add info panel.
 info = L.control();
 info.onAdd = function (map) {
-  this._div = L.DomUtil.create('div', 'info');
-  return this._div;
+  return L.DomUtil.create('div', 'panel info');
 };
 info.addTo(map);
 
-// Add legend panel.
-legend = L.control({position: 'bottomleft'});
-legend.onAdd = function (map) {
+// Add zoom buttons.
+zoom_buttons = L.control({position: 'bottomleft'});
+zoom_buttons.onAdd = function (map) {
   return L.DomUtil.create('div', 'zoom_buttons');
 };
-legend.addTo(map);
+zoom_buttons.addTo(map);
 $($(".zoom_buttons")[0]).attr('id','zoom_buttons')
 
-// Add zoom buttons.
 $("#zoom_buttons").html("");
 for (var jx = 0; jx < config.zooms.length; jx ++) {
   $("#zoom_buttons").append("<button type='button' class='btn zoom_button' id='" + config.zooms[jx].id + "'>" + config.zooms[jx].name + "</button>");
@@ -55,7 +54,6 @@ for (var jx = 0; jx < config.zooms.length; jx ++) {
   // Add a handler for the button.
   $('#' + config.zooms[jx].id).click(function (lat_lon,zoom) {map.setView(lat_lon, zoom)}.bind(undefined,config.zooms[jx].lat_lon,config.zooms[jx].zoom));
 }
-
 
 // Change the current stat.
 function selectStat(val, e) {
@@ -135,25 +133,23 @@ function onEachFeature(feature, layer) {
 
 // Update the info panel.
 function updateInfo(props) {
-  info._div.innerHTML = '<h4>' + current_stat.name + '</h4>' +  (props ?
-    '<b>' + props.Name + '</b><br />' + props[current_stat.name] + " " + current_stat.unit
-    : 'Hover over a state');
+  $(".info").html('<h4>' + current_stat.name + '</h4>')
+            .append(props ? '<b>' + props.Name + '</b><br />' + props[current_stat.name] + " " + current_stat.unit : 'Hover over a state');
 };
 
 // Update the legend panel.
 function updateLegend() {
-  var legend = $(".legend"),
-    grades = [],
-    labels = [],
-    from,to;
+  var grades = [],
+      labels = [],
+      from,to;
   for (colour in current_stat.colours) {grades.push(parseInt(colour))};
   for (var i = 0; i < grades.length; i++) {  
     from = grades[i];
     to = grades[i+1];
     labels.push('<i style="background:' + getColour(from + 1) + '"></i> ' + from + (to ? '&ndash;' + to : '+'));
   }
-  legend.html("<p>" + current_stat.unit + "</p>");
-  legend.append(labels.join('<br>'));
+  $(".legend").html("<p>" + current_stat.unit + "</p>")
+              .append(labels.join('<br>'));
 }
 
 // Update the details panel.
@@ -210,7 +206,7 @@ $.ajax({
     $("#stat_buttons").html("");
     for (var jx = 0; jx < data.length; jx ++) {
       if (data[jx].map) {
-        $("#stat_buttons").append("<button type='button' value='" + jx + "'class='btn btn-primary' id='" + data[jx].id + "''>" + data[jx].name + "</button>");
+        $("#stat_buttons").append("<button type='button' value='" + jx + "'class='btn btn-info' id='" + data[jx].id + "''>" + data[jx].name + "</button>");
 
         // Add a handler for the button.
         $('#' + data[jx].id).click(function (e) {selectStat(this,e)});
