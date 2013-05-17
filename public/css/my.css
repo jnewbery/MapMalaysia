@@ -8,6 +8,10 @@ body {
   border-width:2px;
 }
 
+#zoom_buttons button{
+  margin-left: 5px;
+}
+
 #details {
   height: 600px;
   border-style: solid;
@@ -19,7 +23,7 @@ body {
   text-align: center;
 }
 
-.info {
+.panel {
   padding: 6px 8px;
   font: 14px/16px Arial, Helvetica, sans-serif;
   background: white;
@@ -27,7 +31,7 @@ body {
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-radius: 5px;
 }
-.info h4 {
+.panel h4 {
   margin: 0 0 5px;
   color: #777;
 }
