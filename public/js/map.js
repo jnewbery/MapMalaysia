@@ -8,15 +8,6 @@ var map,
 // Set page title.
 $('title').html(config.title);
 
-// Add zoom buttons.
-$("#zoom_buttons").html("");
-for (var jx = 0; jx < config.zooms.length; jx ++) {
-  $("#zoom_buttons").append("<button type='button' class='btn btn-info' id='" + config.zooms[jx].id + "'>" + config.zooms[jx].name + "</button>");
-
-  // Add a handler for the button.
-  $('#' + config.zooms[jx].id).click(function (lat_lon,zoom) {map.setView(lat_lon, zoom)}.bind(undefined,config.zooms[jx].lat_lon,config.zooms[jx].zoom));
-}
-
 // Add the map.
 map = L.map('map').setView(config.home.lat_lon, config.home.zoom);
 
@@ -47,6 +38,24 @@ info.onAdd = function (map) {
   return this._div;
 };
 info.addTo(map);
+
+// Add legend panel.
+legend = L.control({position: 'bottomleft'});
+legend.onAdd = function (map) {
+  return L.DomUtil.create('div', 'zoom_buttons');
+};
+legend.addTo(map);
+$($(".zoom_buttons")[0]).attr('id','zoom_buttons')
+
+// Add zoom buttons.
+$("#zoom_buttons").html("");
+for (var jx = 0; jx < config.zooms.length; jx ++) {
+  $("#zoom_buttons").append("<button type='button' class='btn zoom_button' id='" + config.zooms[jx].id + "'>" + config.zooms[jx].name + "</button>");
+
+  // Add a handler for the button.
+  $('#' + config.zooms[jx].id).click(function (lat_lon,zoom) {map.setView(lat_lon, zoom)}.bind(undefined,config.zooms[jx].lat_lon,config.zooms[jx].zoom));
+}
+
 
 // Change the current stat.
 function selectStat(val, e) {
