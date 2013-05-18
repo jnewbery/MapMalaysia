@@ -1,5 +1,7 @@
 config = {
   "title":"MapMalaysia",
+  "key":"",
+  "min_zoom": 5,
   "home":{
     "lat_lon":[3.8, 102],
     "zoom":7
