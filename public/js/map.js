@@ -1,4 +1,5 @@
-var map,
+var bounds,
+    map,
     stats,
     current_stat,
     geojson,
@@ -10,12 +11,16 @@ var map,
 $('title').html(config.title);
 
 // Add the map.
-map = L.map('map').setView(config.home.lat_lon, config.home.zoom);
+map = L.map('map',{
+  center: config.home.lat_lon,
+  zoom: config.home.zoom,
+  minZoom: config.min_zoom
+})
 
 // Add cloudmade.
 var cloudmade = L.tileLayer('http://{s}.tile.cloudmade.com/{key}/{styleId}/256/{z}/{x}/{y}.png', {
     attribution: 'Map data &copy; 2011 OpenStreetMap contributors, Imagery &copy; 2011 CloudMade',
-    key: 'BC9A493B41014CAABB98F0471D759707',
+    key: config.key,
     styleId: 22677
 }).addTo(map);
 
