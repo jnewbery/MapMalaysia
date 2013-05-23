@@ -194,7 +194,7 @@ function onTableChange(e) {
 // Get data.json and populate the map with data.
 $.ajax({
   dataType: 'json',
-  url: "./public/data/stats.json", 
+  url: config.ajax_url, 
   timeout: 20000,
   success: function(data) {
     stats = data;

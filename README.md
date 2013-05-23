@@ -1,15 +1,12 @@
-MapMalaysia
-===========
+# MapMalaysia
 
-An interactive map of Malaysia. As it stands, the map displays population density in each of Malaysia's states, but the code is easily reusable to display other data.
+MapMalaysia is a highly customizable choropleth map of Malaysia. As it stands, the map displays population density, mean income and the results from the 2013 general elections in each of Malaysia's states, but the code is easily reusable to display other data.
 
-Most of the code is taken from the leaflet choropeth tutorial: http://leafletjs.com/examples/choropleth.html
+Code was originally borrowed from the [leaflet choropeth tutorial](http://leafletjs.com/examples/choropleth.html), but has been haevily modified.
 
-I couldn't find a good source of geographic data for Malaysia, so the states are hand drawn using the geoJSON editor here: http://blog.sallarp.com/google-maps-geojson-editor/ . If anyone knows of a good source of data or a better editor, let me know!
+The state boundaries are hand drawn using [an online geoJSON editor](http://blog.sallarp.com/google-maps-geojson-editor/).
 
-Files
------
+## Customizing MapMalaysia
 
-- geo.js contains all the geoJSON, (mostly) broken down into frontiers and collected into polygons. Once that work is complete, the json/state.json files can be removed
-- Leaflet js and css files included.
-- Bootstrap js and css included
+- config.js contains all the config for the choropleth map as well as the geoJSON defining the state shapes. If you want to modify the map for a different country or location. This is where you should look.
+- stats.json contains the stats for the different Malaysian states. Want to show different states or change the colours on the map? Modify this file. Want to use stats from an external server or database? Modify the ajax_url field in the config.js file.
