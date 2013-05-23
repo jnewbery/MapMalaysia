@@ -6,6 +6,10 @@ Code was originally borrowed from the [leaflet choropeth tutorial](http://leafle
 
 The state boundaries were hand drawn using [an online geoJSON editor](http://blog.sallarp.com/google-maps-geojson-editor/).
 
+## Try it out!
+
+There's a github page [here](jonnynewbs.github.io/MapMalysia).
+
 ## Customizing MapMalaysia
 
 - config.js contains all the config for the choropleth map as well as the geoJSON defining the state shapes. This is where you should look if you want to modify the map for a different country or location.
