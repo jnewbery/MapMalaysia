@@ -8,7 +8,7 @@ The state boundaries were hand drawn using [an online geoJSON editor](http://blo
 
 ## Try it out!
 
-There's a github page [here](jonnynewbs.github.io/MapMalaysia).
+There's a github page [here](http://jonnynewbs.github.io/MapMalaysia).
 
 ## Customizing MapMalaysia
 
