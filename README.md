@@ -10,6 +10,17 @@ The state boundaries were hand drawn using [an online geoJSON editor](http://blo
 
 There's a github page [here](http://jonnynewbs.github.io/MapMalaysia).
 
+## To do
+
+The states were drawn rather haphazardly to begin with. The way that it should be done is to have two files:
+
+- *frontiers.geosjson* - contains all the definitions for the frontiers between states
+- *states.json* - contains the definitions of the states (ie which frontier segments make up the whole state boundary)
+
+Those two files are then compiled into *states.geojson*.
+
+This process has been started, but there's still a lot to do to tidy it up.
+
 ## Customizing MapMalaysia
 
 - config.js contains all the config for the choropleth map as well as the geoJSON defining the state shapes. This is where you should look if you want to modify the map for a different country or location.
