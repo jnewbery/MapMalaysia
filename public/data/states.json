@@ -4,7 +4,7 @@
   {"id":"03","Name":"Federal Territory of Putrajaya","geometry":{"type":"MultiPolygon","coordinates":[["pjysgr"]]}},
   {"id":"04","Name":"Johor","geometry":{"type":"MultiPolygon","coordinates":[["jhrocn,jhrphg,jhrnsn,jhrmlk"]]}},
   {"id":"05","Name":"Kedah","geometry":{"type":"MultiPolygon","coordinates":[["kdhocn,kdhpng,kdhprk,kdhtha,kdhpls"]]}},
-  {"id":"06","Name":"Kelantan","geometry":{"type":"MultiPolygon","coordinates":[["ktnocn,ktntrg,ktnphg,ktnprk,ktntha"]]}},
+  {"id":"06","Name":"Kelantan","geometry":{"type":"MultiPolygon","coordinates":[["ktnocn,ktntha,ktnprk,ktnphg,ktntrg"]]}},
   {"id":"07","Name":"Melaka","geometry":{"type":"MultiPolygon","coordinates":[["mlkocn,mlkjhr,mlknsn"]]}},
   {"id":"08","Name":"Negeri Sembilan","geometry":{"type":"MultiPolygon","coordinates":[["nsnocn,nsnmlk,nsnjhr,nsnphg,nsnsgr"]]}},
   {"id":"09","Name":"Pahang","geometry":{"type":"MultiPolygon","coordinates":[["phgtrg,phgktn,phgprk,phgsgr,phgnsn,phgjhr,phgocn"]]}},
