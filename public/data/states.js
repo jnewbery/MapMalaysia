@@ -32,6 +32,7 @@ function subst_linestring(coords) {
     }
 
     if (fron.length == 0) {
+      console.dir("Error! Frontier is empty: " + fron_name);
       continue;
     }
 
