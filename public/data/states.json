@@ -1,19 +1,18 @@
-{"type":"FeatureCollection","features":[
-    {"type":"Feature","id":"01","geometry":{"type":"MultiPolygon","coordinates":[["kulsgr"]]},"properties":{"Name":"Federal Territory of Kuala Lumpur"}},
-    {"type":"Feature","id":"02","geometry":{"type":"MultiPolygon","coordinates":[["lbnocn"]]},"properties":{"Name":"Federal Territory of Labuan"}},
-    {"type":"Feature","id":"03","geometry":{"type":"MultiPolygon","coordinates":[["pjysgr"]]},"properties":{"Name":"Federal Territory of Putrajaya"}},
-    {"type":"Feature","id":"04","geometry":{"type":"MultiPolygon","coordinates":[["jhrocn,jhrphg,jhrnsn,jhrmlk"]]},"properties":{"Name":"Johor"}},
-    {"type":"Feature","id":"05","geometry":{"type":"MultiPolygon","coordinates":[["kdhocn,kdhpng,kdhprk,kdhtha,kdhpls"]]},"properties":{"Name":"Kedah"}},
-    {"type":"Feature","id":"06","geometry":{"type":"MultiPolygon","coordinates":[["ktnocn,ktntrg,ktnphg,ktnprk,ktntha"]]},"properties":{"Name":"Kelantan"}},
-    {"type":"Feature","id":"07","geometry":{"type":"MultiPolygon","coordinates":[["mlkocn,mlkjhr,mlknsn"]]},"properties":{"Name":"Melaka"}},
-    {"type":"Feature","id":"08","geometry":{"type":"MultiPolygon","coordinates":[["nsnocn,nsnmlk,nsnjhr,nsnphg,nsnsgr"]]},"properties":{"Name":"Negeri Sembilan"}},
-    {"type":"Feature","id":"09","geometry":{},"properties":{"Name":"Pahang"}},
-    {"type":"Feature","id":"10","geometry":{"type":"MultiPolygon","coordinates":[["pngocn,pngprk,pngkdh"],["pngocn2"]]},"properties":{"Name":"Penang"}},
-    {"type":"Feature","id":"11","geometry":{"type":"MultiPolygon","coordinates":[["prkocn,prksgr,prkphg,prkktn,prktha,prkkdh,prkpng"]]},"properties":{"Name":"Perak"}},
-    {"type":"Feature","id":"12","geometry":{"type":"MultiPolygon","coordinates":[["plsocn,plskdh,plstha"]]},"properties":{"Name":"Perlis"}},
-    {"type":"Feature","id":"13","geometry":{"type":"MultiPolygon","coordinates":[["sbhocn,sbhsrw,sbhind"]]},"properties":{"Name":"Sabah"}},
-    {"type":"Feature","id":"14","geometry":{"type":"MultiPolygon","coordinates":[["srwocn,srwind,srwsbh,srwocn3,srwbru2,srwocn2,srwbru"]]},"properties":{"Name":"Sarawak"}},
-    {"type":"Feature","id":"15","geometry":{"type":"MultiPolygon","coordinates":[["sgrocn,sgrnsn,sgrphg,sgrprk"],["sgrkul"],["sgrpjy"]]},"properties":{"Name":"Selangor"}},
-    {"type":"Feature","id":"16","geometry":{"type":"MultiPolygon","coordinates":[["trgocn,trgktn,trgphg"]]},"properties":{"Name":"Terengganu"}}
-  ]
-}
+[
+  {"id":"01","Name":"Federal Territory of Kuala Lumpur","geometry":{"type":"MultiPolygon","coordinates":[["kulsgr"]]}},
+  {"id":"02","Name":"Federal Territory of Labuan","geometry":{"type":"MultiPolygon","coordinates":[["lbnocn"]]}},
+  {"id":"03","Name":"Federal Territory of Putrajaya","geometry":{"type":"MultiPolygon","coordinates":[["pjysgr"]]}},
+  {"id":"04","Name":"Johor","geometry":{"type":"MultiPolygon","coordinates":[["jhrocn,jhrphg,jhrnsn,jhrmlk"]]}},
+  {"id":"05","Name":"Kedah","geometry":{"type":"MultiPolygon","coordinates":[["kdhocn,kdhpng,kdhprk,kdhtha,kdhpls"]]}},
+  {"id":"06","Name":"Kelantan","geometry":{"type":"MultiPolygon","coordinates":[["ktnocn,ktntrg,ktnphg,ktnprk,ktntha"]]}},
+  {"id":"07","Name":"Melaka","geometry":{"type":"MultiPolygon","coordinates":[["mlkocn,mlkjhr,mlknsn"]]}},
+  {"id":"08","Name":"Negeri Sembilan","geometry":{"type":"MultiPolygon","coordinates":[["nsnocn,nsnmlk,nsnjhr,nsnphg,nsnsgr"]]}},
+  {"id":"09","Name":"Pahang","geometry":{"type":"MultiPolygon","coordinates":[["phgtrg,phgktn,phgprk,phgsgr,phgnsn,phgjhr,phgocn"]]}},
+  {"id":"10","Name":"Penang","geometry":{"type":"MultiPolygon","coordinates":[["pngocn,pngprk,pngkdh"],["pngocn2"]]}},
+  {"id":"11","Name":"Perak","geometry":{"type":"MultiPolygon","coordinates":[["prkocn,prksgr,prkphg,prkktn,prktha,prkkdh,prkpng"]]}},
+  {"id":"12","Name":"Perlis","geometry":{"type":"MultiPolygon","coordinates":[["plsocn,plskdh,plstha"]]}},
+  {"id":"13","Name":"Sabah","geometry":{"type":"MultiPolygon","coordinates":[["sbhocn,sbhsrw,sbhind"]]}},
+  {"id":"14","Name":"Sarawak","geometry":{"type":"MultiPolygon","coordinates":[["srwocn,srwind,srwsbh,srwocn3,srwbru2,srwocn2,srwbru"]]}},
+  {"id":"15","Name":"Selangor","geometry":{"type":"MultiPolygon","coordinates":[["sgrocn,sgrnsn,sgrphg,sgrprk","sgrkul","sgrpjy"]]}},
+  {"id":"16","Name":"Terengganu","geometry":{"type":"MultiPolygon","coordinates":[["trgocn,trgktn,trgphg"]]}}
+]
