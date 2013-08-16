@@ -27,7 +27,12 @@ function subst_linestring(coords) {
 
       if (frontiers_list.indexOf(fron_name) == -1) {
         console.dir("Error! Frontier does not appear in dictionary!")
+        return('');
       }
+    }
+
+    if (fron.length == 0) {
+      continue;
     }
 
     // Store off the first coordinate in a line string.
@@ -35,12 +40,10 @@ function subst_linestring(coords) {
       first_fron_name = fron_name;
       first = fron[0];
     }
-    else {
-      if ((last[0] != fron[0][0]) || (last[1] != fron[0][1])) {
-        console.dir("Error! " + prev_fron_name + " does not meet " + fron_name)
-        console.dir(prev_fron_name + " final coord: " + last)
-        console.dir(fron_name + " first coord: " + fron[0])
-      }
+    else if ((last[0] != fron[0][0]) || (last[1] != fron[0][1])) {
+      console.dir("Error! " + prev_fron_name + " does not meet " + fron_name)
+      console.dir(prev_fron_name + " final coord: " + last)
+      console.dir(fron_name + " first coord: " + fron[0])
     }
 
     line_str = line_str.concat(fron);
@@ -49,13 +52,10 @@ function subst_linestring(coords) {
     last = fron[fron.length-1]
     prev_fron_name = fron_name;
 
-    if (j == frons.length) {
-      // assert that fron[fron.length -1] == first
-      if ((fron[fron.length -1][0] != first[0]) || (fron[fron.length -1][1] != first[1])) {
-        console.dir("Error! " + fron_name + " does not meet " + first_fron_name)
-        console.dir(fron_name + " final coord: " + last)
-        console.dir(first_fron_name + " first coord: " + first)
-      }
+    if ((j == frons.length) && ((fron[fron.length -1][0] != first[0]) || (fron[fron.length -1][1] != first[1]))){
+      console.dir("Error! " + fron_name + " does not meet " + first_fron_name)
+      console.dir(fron_name + " final coord: " + last)
+      console.dir(first_fron_name + " first coord: " + first)
     }
   }
 
