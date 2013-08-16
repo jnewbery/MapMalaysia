@@ -5,60 +5,126 @@ var bounds,
     geojson,
     legend,
     info,
+    states_data,
     zoom_buttons;
 
-// Set page title.
-$('title').html(config.title);
+// On page load async functions
 
-// Add the map.
-map = L.map('map',{
-  center: config.home.lat_lon,
-  zoom: config.home.zoom,
-  minZoom: config.min_zoom
-})
+function add_states(data){
+  //On page load: states data loaded
 
-// Add cloudmade.
-var cloudmade = L.tileLayer('http://{s}.tile.cloudmade.com/{key}/{styleId}/256/{z}/{x}/{y}.png', {
-    attribution: 'Map data &copy; 2011 OpenStreetMap contributors, Imagery &copy; 2011 CloudMade',
-    key: config.key,
-    styleId: 22677
-}).addTo(map);
+  // Set page title
+  $('title').html(config.title);
 
-// Add choropleth features.
-geojson = L.geoJson(statesData, {
-  style: style,
-  onEachFeature: onEachFeature
-}).addTo(map);
+  states_data = data;
 
-// Add legend panel.
-legend = L.control({position: 'bottomright'});
-legend.onAdd = function (map) {
-  return L.DomUtil.create('div', 'panel legend');
-};
-legend.addTo(map);
+  // Add the map.
+  map = L.map('map',{
+    center: config.home.lat_lon,
+    zoom: config.home.zoom,
+    minZoom: config.min_zoom
+  })
 
-// Add info panel.
-info = L.control();
-info.onAdd = function (map) {
-  return L.DomUtil.create('div', 'panel info');
-};
-info.addTo(map);
+  // Add cloudmade.
+  var cloudmade = L.tileLayer('http://{s}.tile.cloudmade.com/{key}/{styleId}/256/{z}/{x}/{y}.png', {
+      attribution: 'Map data &copy; 2011 OpenStreetMap contributors, Imagery &copy; 2011 CloudMade',
+      key: config.key,
+      styleId: 22677
+  }).addTo(map);
 
-// Add zoom buttons.
-zoom_buttons = L.control({position: 'bottomleft'});
-zoom_buttons.onAdd = function (map) {
-  return L.DomUtil.create('div', 'zoom_buttons');
-};
-zoom_buttons.addTo(map);
-$($(".zoom_buttons")[0]).attr('id','zoom_buttons')
+  // Add choropleth features.
+  geojson = L.geoJson(states_data, {
+    style: style,
+    onEachFeature: onEachFeature
+  }).addTo(map);
 
-$("#zoom_buttons").html("");
-for (var jx = 0; jx < config.zooms.length; jx ++) {
-  $("#zoom_buttons").append("<button type='button' class='btn zoom_button' id='" + config.zooms[jx].id + "'>" + config.zooms[jx].name + "</button>");
+  // Add legend panel.
+  legend = L.control({position: 'bottomright'});
+  legend.onAdd = function (map) {
+    return L.DomUtil.create('div', 'panel legend');
+  };
+  legend.addTo(map);
 
-  // Add a handler for the button.
-  $('#' + config.zooms[jx].id).click(function (lat_lon,zoom) {map.setView(lat_lon, zoom)}.bind(undefined,config.zooms[jx].lat_lon,config.zooms[jx].zoom));
+  // Add info panel.
+  info = L.control();
+  info.onAdd = function (map) {
+    return L.DomUtil.create('div', 'panel info');
+  };
+  info.addTo(map);
+
+  // Add zoom buttons.
+  zoom_buttons = L.control({position: 'bottomleft'});
+  zoom_buttons.onAdd = function (map) {
+    return L.DomUtil.create('div', 'zoom_buttons');
+  };
+  zoom_buttons.addTo(map);
+  $($(".zoom_buttons")[0]).attr('id','zoom_buttons')
+
+  $("#zoom_buttons").html("");
+  for (var jx = 0; jx < config.zooms.length; jx ++) {
+    $("#zoom_buttons").append("<button type='button' class='btn zoom_button' id='" + config.zooms[jx].id + "'>" + config.zooms[jx].name + "</button>");
+
+    // Add a handler for the button.
+    $('#' + config.zooms[jx].id).click(function (lat_lon,zoom) {map.setView(lat_lon, zoom)}.bind(undefined,config.zooms[jx].lat_lon,config.zooms[jx].zoom));
+  }
+  // Get data.json and populate the map with data.
+  $.ajax({
+    dataType: 'json',
+    url: config.stats_url, 
+    timeout: 20000,
+    success: function(data) {
+      add_stats(data);
+    },
+    error: function(jqxhr, estatus, ethrown) {
+      alert("JSON Error: " + estatus + " , " + ethrown);
+    }
+  });
 }
+
+function add_stats(data) {
+  // on page load: stats data loaded
+
+  stats = data;
+
+  // Add the combobox.
+  selector = $("<select id='state-combobox' style='width:100%'></select>");
+  selector.append("<option value>Select state...</option>");
+  for (var ix = 0; ix < states_data.features.length; ix ++) {
+    state = states_data.features[ix];
+    stName = state.properties.Name;
+    selector.append("<option value='" + ix + "'>"+stName+"</option>");
+
+    for (var jx = 0; jx < data.length; jx ++) {
+      state.properties[data[jx].name] = data[jx].values[ix]
+    }
+  }
+
+  $("#state-detail").html("")
+                    .append(selector)
+                    .append("<div id='state-info'></div><div id='state-searchbox'></div>");
+  $("#state-combobox").select2().on("change", onTableChange);
+
+  // Add stat buttons.
+  $("#stat_buttons").html("");
+  for (var jx = 0; jx < data.length; jx ++) {
+    if (data[jx].map) {
+      $("#stat_buttons").append("<button type='button' value='" + jx + "'class='btn btn-info' id='" + data[jx].id + "''>" + data[jx].name + "</button>");
+
+      // Add a handler for the button.
+      $('#' + data[jx].id).click(function (e) {selectStat(this,e)});
+    }
+  }
+
+  // Activate the first active stat.
+  for (var jx = 0; jx < data.length; jx ++) {
+    if (data[jx].active) {
+      $('#' + data[jx].id).click();
+      break;
+    }
+  }
+}
+
+// Utility functions
 
 // Change the current stat.
 function selectStat(val, e) {
@@ -167,7 +233,7 @@ function selectState(state_ix, update_dropdown) {
   $("#state-combobox").select2("val", state_ix);
 
   // update the table info.
-  props = statesData.features[state_ix].properties;
+  props = states_data.features[state_ix].properties;
   h = "<table class='table table-striped' style='font-size:smaller'><tbody>";
 
   for (var i = 0; i < stats.length; i += 1) {
@@ -191,50 +257,13 @@ function onTableChange(e) {
   })
 };
 
-// Get data.json and populate the map with data.
+// Page load: get data and run async on page load functions
 $.ajax({
   dataType: 'json',
-  url: config.ajax_url, 
+  url: config.states_url, 
   timeout: 20000,
   success: function(data) {
-    stats = data;
-
-    // Add the combobox.
-    selector = $("<select id='state-combobox' style='width:100%'></select>");
-    selector.append("<option value>Select state...</option>");
-    for (var ix = 0; ix < statesData.features.length; ix ++) {
-      state = statesData.features[ix];
-      stName = state.properties.Name;
-      selector.append("<option value='" + ix + "'>"+stName+"</option>");
-
-      for (var jx = 0; jx < data.length; jx ++) {
-        state.properties[data[jx].name] = data[jx].values[ix]
-      }
-    }
-
-    $("#state-detail").html("")
-                      .append(selector)
-                      .append("<div id='state-info'></div><div id='state-searchbox'></div>");
-    $("#state-combobox").select2().on("change", onTableChange);
-
-    // Add stat buttons.
-    $("#stat_buttons").html("");
-    for (var jx = 0; jx < data.length; jx ++) {
-      if (data[jx].map) {
-        $("#stat_buttons").append("<button type='button' value='" + jx + "'class='btn btn-info' id='" + data[jx].id + "''>" + data[jx].name + "</button>");
-
-        // Add a handler for the button.
-        $('#' + data[jx].id).click(function (e) {selectStat(this,e)});
-      }
-    }
-
-    // Activate the first active stat.
-    for (var jx = 0; jx < data.length; jx ++) {
-      if (data[jx].active) {
-        $('#' + data[jx].id).click();
-        break;
-      }
-    }
+    add_states(data);
   },
   error: function(jqxhr, estatus, ethrown) {
     alert("JSON Error: " + estatus + " , " + ethrown);
