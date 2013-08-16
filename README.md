@@ -6,20 +6,22 @@ Code was originally borrowed from the [leaflet choropeth tutorial](http://leafle
 
 The state boundaries were hand drawn using [an online geoJSON editor](http://blog.sallarp.com/google-maps-geojson-editor/).
 
+## Files
+
+The states are constructed using two source files:
+
+- *frontiers.geosjson* - contains all the definitions for the frontiers between states
+- *states.json* - contains the definitions of the states (ie which frontier segments make up the whole state boundary). This file is pseudo-geojson - it's valid geojson except that the LineSegments are not defined as arrays of coordinates, they're defined as frontier segments which are defined in *frontiers.geojson*.
+
+*states.js* then compiles those two files into a valid *states.geojson* file.
+
 ## Try it out!
 
 There's a github page [here](http://jonnynewbs.github.io/MapMalaysia).
 
 ## To do
 
-The states were drawn rather haphazardly to begin with. The way that it should be done is to have two files:
-
-- *frontiers.geosjson* - contains all the definitions for the frontiers between states
-- *states.json* - contains the definitions of the states (ie which frontier segments make up the whole state boundary)
-
-Those two files are then compiled into *states.geojson*.
-
-This process has been started, but there's still a lot to do to tidy it up.
+The geojson boundaries are actually defined manually in config.js. They should be defined using states.geojson. The requires map.js to ajax load the states.geojson file, so needs a bit of reworking to load asynchronously.
 
 ## Customizing MapMalaysia
 
