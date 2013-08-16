@@ -7,7 +7,6 @@ var fs = require('fs'),
     states,
     state;
 
-
 function subst_linestring(coords) {
   var line_str = []
 
@@ -124,4 +123,4 @@ for (var i = 0; i < states.length; i++) {
   output.features.push(createState(state));
 }
 
-fs.writeFileSync(__dirname + '/output.json', JSON.stringify(output,null,2));
+fs.writeFileSync(__dirname + '/output.geojson', JSON.stringify(output,null,2));
