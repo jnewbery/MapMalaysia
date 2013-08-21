@@ -36,27 +36,31 @@ function subst_linestring(coords) {
       return('');
     }
 
-    // Store off the first coordinate in a line string.
+    // Store off the first coordinate of the first frontier
     if (j == 0) {
       first_fron_name = fron_name;
       first = fron[0];
+      line_str = fron.slice(0,0);
     }
-    else if ((last[0] != fron[0][0]) || (last[1] != fron[0][1])) {
-      console.dir("Error! " + prev_fron_name + " does not meet " + fron_name)
-      console.dir(prev_fron_name + " final coord: " + last)
-      console.dir(fron_name + " first coord: " + fron[0])
+    // Check that the first coordinate of this frontier == the last coordinate of the previous frontier
+    else if ((prev[0] != fron[0][0]) || (prev[1] != fron[0][1])) {
+      console.dir("Error! " + prev_fron_name + " does not meet " + fron_name);
+      console.dir(prev_fron_name + " final coord: " + prev);
+      console.dir(fron_name + " first coord: " + fron[0]);
     }
 
-    line_str = line_str.concat(fron);
+    // Add this frontier to the state border definition. Remove first coordinate to avoid repetation
+    line_str = line_str.concat(fron.slice(1));
 
     // Store off the last coordinate in a line string section.
-    last = fron[fron.length-1]
+    prev = fron[fron.length-1];
     prev_fron_name = fron_name;
-
-    if ((j == frons.length) && ((fron[fron.length -1][0] != first[0]) || (fron[fron.length -1][1] != first[1]))){
-      console.dir("Error! " + fron_name + " does not meet " + first_fron_name)
-      console.dir(fron_name + " final coord: " + last)
-      console.dir(first_fron_name + " first coord: " + first)
+    
+    // If this is the last frontier, check that the final coordinate == the first coordinate of the first frontier
+    if ((j == frons.length - 1) && ((fron[fron.length -1][0] != first[0]) || (fron[fron.length -1][1] != first[1]))){
+      console.dir("Error! " + fron_name + " does not meet " + first_fron_name);
+      console.dir(fron_name + " final coord: " + fron[fron.length-1]);
+      console.dir(first_fron_name + " first coord: " + first);
     }
   }
 
