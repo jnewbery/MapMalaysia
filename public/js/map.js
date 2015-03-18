@@ -25,11 +25,10 @@ function add_states(data){
     minZoom: config.min_zoom
   })
 
-  // Add cloudmade.
-  var cloudmade = L.tileLayer('http://{s}.tile.cloudmade.com/{key}/{styleId}/256/{z}/{x}/{y}.png', {
-      attribution: 'Map data &copy; 2011 OpenStreetMap contributors, Imagery &copy; 2011 CloudMade',
-      key: config.key,
-      styleId: 22677
+  // Add Mapbox.
+  var mapbox = L.tileLayer('http://api.tiles.mapbox.com/v4/mapbox.outdoors/{z}/{x}/{y}.png?access_token={key}', {
+      attribution: 'Map data &copy; OpenStreetMap &copy; Mapbox',
+      key: config.key
   }).addTo(map);
 
   // Add choropleth features.

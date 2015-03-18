@@ -40,7 +40,8 @@ function subst_linestring(coords) {
     if (j == 0) {
       first_fron_name = fron_name;
       first = fron[0];
-      line_str = fron.slice(0,0);
+      console.dir(first)
+      line_str = line_str.concat(fron.slice(0,1));
     }
     // Check that the first coordinate of this frontier == the last coordinate of the previous frontier
     else if ((prev[0] != fron[0][0]) || (prev[1] != fron[0][1])) {
